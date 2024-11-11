@@ -8,10 +8,10 @@ import (
 type ParkingLot struct {
 	Capacity int
 	Vehicles chan *Vehicle
-    Mutex    sync.Mutex
+	Mutex    sync.Mutex
 }
 
-//Se crea un nuevo estacionamiento con la capacidad que se especifica
+// Se crea un nuevo estacionamiento con la capacidad que se especifica
 func NewParkingLot(capacity int) *ParkingLot {
 	return &ParkingLot{
 		Capacity: capacity,
@@ -19,7 +19,7 @@ func NewParkingLot(capacity int) *ParkingLot {
 	}
 }
 
-//Intenta agregar un carrito al estacionamiento
+// Intenta agregar un carrito al estacionamiento
 func (p *ParkingLot) Enter(v *Vehicle) bool {
 	p.Mutex.Lock()
 	defer p.Mutex.Unlock()
@@ -34,8 +34,8 @@ func (p *ParkingLot) Enter(v *Vehicle) bool {
 	}
 }
 
-//Permite que un carro salga
-func (p *ParkingLot) Exit() *Vehicle {
+// Permite que un carro salga
+func (p *ParkingLot) Exit(v *Vehicle) *Vehicle {
 	p.Mutex.Lock()
 	defer p.Mutex.Unlock()
 
